@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Anniversary Card</title>
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
+        /* Background + font */
         body {
             background-image: url('https://i.ibb.co/7Q5q6Q5/flowers-love-bg.jpg');
             background-size: cover;
             background-position: center;
             font-family: 'Pacifico', cursive;
-            color: #ff2d95;
+            color: #3d2b7f; /* deep purple, cute and readable */
             margin: 0;
             overflow-x: hidden;
         }
+
+        /* Floating hearts / sparkles */
         body::before {
             content: "💖🌸💐💌";
             position: absolute;
@@ -24,27 +28,33 @@
             display: flex;
             justify-content: space-around;
             font-size: 3em;
-            animation: float 5s infinite alternate;
+            animation: float 6s infinite alternate;
             pointer-events: none;
         }
+
         @keyframes float {
             0% { transform: translateY(0px); }
             100% { transform: translateY(30px); }
         }
+
+        /* Page styling */
         .page {
             display: none;
             text-align: center;
             padding: 50px;
             font-size: 2em;
         }
+
         .page.active {
             display: block;
         }
+
+        /* Next Button */
         .next-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #ff4da6;
+            background-color: #6a0dad; /* purple shade */
             color: white;
             padding: 12px 25px;
             font-size: 18px;
@@ -55,48 +65,91 @@
             z-index: 9999;
             transition: transform 0.2s, background-color 0.3s;
         }
+
         .next-button:hover {
             transform: scale(1.1);
-            background-color: #ff66b2;
+            background-color: #8b2dd2;
+        }
+
+        /* Typing animation */
+        .typing {
+            border-right: .15em solid #3d2b7f;
+            white-space: nowrap;
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
+
+    <!-- Music -->
     <audio id="bgMusic" src="Umraan Lameriyan - Juss.mp3" loop autoplay></audio>
 
-    <div class="page active">
+    <!-- Envelope (click to start typing text) -->
+    <div id="envelope" style="text-align:center; margin-top:100px; cursor:pointer;">
+        <span style="font-size:5em;">✉️</span>
+        <h2>Click me!</h2>
+    </div>
+
+    <!-- Pages -->
+    <div class="page typing">
         <h1>Happy Anniversary Mera Bachaa 💕❤️</h1>
     </div>
-    <div class="page">
+    <div class="page typing">
         <h2>2 March, 10 PM PDF... Kuch yaad aaya darling 🥹</h2>
     </div>
-    <div class="page">
+    <div class="page typing">
         <h2>Kesa lga PDF se abtk ka safar 🎀</h2>
     </div>
-    <div class="page">
+    <div class="page typing">
         <h2>Thankuuu mere life mai aane ke liye 💝</h2>
     </div>
-    <div class="page">
+    <div class="page typing">
         <h2>Aapse pyaar hona mera best decision 😭🤭</h2>
     </div>
-    <div class="page">
+    <div class="page typing">
         <h2>I love you Mera Bachaa 😚</h2>
     </div>
-    <div class="page">
+    <div class="page typing">
         <h1>Happy Anniversary 👀🎀</h1>
     </div>
 
+    <!-- Next Button -->
     <button class="next-button" onclick="nextPage()">Next ➡️</button>
 
     <script>
         const pages = document.querySelectorAll('.page');
         let currentPage = 0;
 
+        // Envelope click triggers first page
+        const envelope = document.getElementById('envelope');
+        envelope.addEventListener('click', function(){
+            envelope.style.display = 'none';
+            pages[0].classList.add('active');
+            typeText(pages[0]);
+        });
+
+        // Next Button
         function nextPage() {
-            pages[currentPage].classList.remove('active');
-            currentPage++;
-            if(currentPage >= pages.length) currentPage = pages.length - 1;
-            pages[currentPage].classList.add('active');
+            if(currentPage < pages.length - 1){
+                pages[currentPage].classList.remove('active');
+                currentPage++;
+                pages[currentPage].classList.add('active');
+                typeText(pages[currentPage]);
+            }
+        }
+
+        // Typing effect
+        function typeText(element){
+            const textEl = element.querySelector('h1,h2');
+            const fullText = textEl.innerText;
+            textEl.innerText = '';
+            let i = 0;
+            const speed = 50;
+            const timer = setInterval(() => {
+                textEl.innerText += fullText.charAt(i);
+                i++;
+                if(i >= fullText.length) clearInterval(timer);
+            }, speed);
         }
     </script>
 </body>
