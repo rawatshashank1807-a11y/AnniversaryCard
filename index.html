@@ -1,92 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Anniversary 💕</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-<style>
-body{margin:0;padding:0;font-family:'Poppins',sans-serif;overflow:hidden;transition:0.5s;}
-body.light{background:linear-gradient(135deg,#ffd6e8,#ffe6f7);color:#222;}
-body.dark{background:linear-gradient(135deg,#1e1e2f,#2c003e);color:#fff;}
-.page{display:none;height:100vh;width:100%;position:absolute;top:0;left:0;justify-content:center;align-items:center;flex-direction:column;text-align:center;padding:40px;box-sizing:border-box;backdrop-filter: blur(10px);border-radius:20px;margin:20px;box-shadow:0 15px 40px rgba(0,0,0,0.3);transition:0.5s;}
-h1{font-family:'Great Vibes',cursive;font-size:3rem;margin:0;}
-.nextBtn{margin-top:30px;padding:12px 30px;border:none;border-radius:30px;background:rgba(255,255,255,0.2);backdrop-filter:blur(5px);color:white;font-size:1.2rem;cursor:pointer;box-shadow:0 5px 20px rgba(0,0,0,0.3);transition:0.3s;}
-.nextBtn:hover{transform:scale(1.1);background:rgba(255,255,255,0.4);}
-#envelope{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotateX(0deg);width:250px;height:180px;background:linear-gradient(45deg,#fff0f5,#ffc0cb);border-radius:10px;display:flex;justify-content:center;align-items:center;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,0.3);transition:0.6s;font-size:4rem;}
-#envelope.open{transform:translate(-50%,-50%) rotateX(180deg);}
-.cursor{position:fixed;width:25px;height:25px;background:red;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);z-index:9999;mix-blend-mode:difference;}
-#modeToggle{position:fixed;top:15px;right:15px;background:#fff;border:none;padding:10px 15px;border-radius:20px;cursor:pointer;z-index:1000;}
-.emoji{position:fixed;font-size:24px;animation:fall linear forwards;}
-@keyframes fall{to{transform:translateY(100vh);opacity:0;}}
-.confetti{position:fixed;width:8px;height:8px;background:hsl(0,100%,50%);top:-10px;animation:fall 3s linear forwards;border-radius:50%;}
-.flower{position:fixed;font-size:28px;animation:flowerAnim linear forwards;}
-@keyframes flowerAnim{to{transform:translateY(100vh) rotate(360deg);opacity:0;}}
-.sparkle{position:fixed;width:6px;height:6px;background:yellow;border-radius:50%;box-shadow:0 0 10px #fff;animation:fall 4s linear forwards;}
-</style>
+    <meta charset="UTF-8">
+    <title>Anniversary Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://i.ibb.co/7Q5q6Q5/flowers-love-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Pacifico', cursive;
+            color: #ff2d95;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: "💖🌸💐💌";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            font-size: 3em;
+            animation: float 5s infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(30px); }
+        }
+        .page {
+            display: none;
+            text-align: center;
+            padding: 50px;
+            font-size: 2em;
+        }
+        .page.active {
+            display: block;
+        }
+        .next-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff4da6;
+            color: white;
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 9999;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+        .next-button:hover {
+            transform: scale(1.1);
+            background-color: #ff66b2;
+        }
+    </style>
 </head>
-<body class="light">
+<body>
+    <audio id="bgMusic" src="Umraan Lameriyan - Juss.mp3" loop autoplay></audio>
 
-<audio id="bgMusic" src="Umraan Lameriyan - Juss.mp3" loop autoplay></audio>
-<button id="modeToggle">🌙</button>
-<div class="cursor"></div>
-<div id="envelope">💌</div>
+    <div class="page active">
+        <h1>Happy Anniversary Mera Bachaa 💕❤️</h1>
+    </div>
+    <div class="page">
+        <h2>2 March, 10 PM PDF... Kuch yaad aaya darling 🥹</h2>
+    </div>
+    <div class="page">
+        <h2>Kesa lga PDF se abtk ka safar 🎀</h2>
+    </div>
+    <div class="page">
+        <h2>Thankuuu mere life mai aane ke liye 💝</h2>
+    </div>
+    <div class="page">
+        <h2>Aapse pyaar hona mera best decision 😭🤭</h2>
+    </div>
+    <div class="page">
+        <h2>I love you Mera Bachaa 😚</h2>
+    </div>
+    <div class="page">
+        <h1>Happy Anniversary 👀🎀</h1>
+    </div>
 
-<div class="page" id="page1"><h1 id="text1"></h1><button class="nextBtn" onclick="nextPage()">Next ➡</button></div>
-<div class="page" id="page2"><h1 id="text2"></h1><button class="nextBtn" onclick="nextPage()">Next ➡</button></div>
-<div class="page" id="page3"><h1 id="text3"></h1><button class="nextBtn" onclick="nextPage()">Next ➡</button></div>
-<div class="page" id="page4"><h1 id="text4"></h1><button class="nextBtn" onclick="nextPage()">Next ➡</button></div>
-<div class="page" id="page5"><h1 id="text5"></h1><button class="nextBtn" onclick="nextPage()">Next ➡</button></div>
-<div class="page" id="page6"><h1 id="text6"></h1><button class="nextBtn" onclick="nextPage()">Next ➡</button></div>
-<div class="page" id="page7"><h1 id="text7"></h1></div>
+    <button class="next-button" onclick="nextPage()">Next ➡️</button>
 
-<script>
-// Cursor
-document.addEventListener("mousemove",e=>{document.querySelector(".cursor").style.left=e.clientX+"px";document.querySelector(".cursor").style.top=e.clientY+"px";});
-// Mode toggle
-document.getElementById("modeToggle").onclick=()=>{document.body.classList.toggle("dark");document.body.classList.toggle("light");};
-// Envelope
-const envelope=document.getElementById("envelope");
-envelope.addEventListener("click",()=>{
-envelope.classList.add("open");
-setTimeout(()=>{
-envelope.style.display="none";
-showPage(1);
-typeText("text1","Happy Anniversary mera bachaa 💕❤️");
-emojiRain();
-floatingFlowers();
-sparkles();
-},600);
-});
-// Pages
-let current=1;
-function showPage(num){document.querySelectorAll(".page").forEach(p=>p.style.display="none");document.getElementById("page"+num).style.display="flex";}
-function nextPage(){
-current++;
-showPage(current);
-if(current==2) typeText("text2","2 March, 10 PM PDF... kuch yaad aaya darling 🥹");
-if(current==3) typeText("text3","Kesa laga PDF se abtk ka safar 🎀");
-if(current==4) typeText("text4","Thankuuu mere life mai aane ke liye ek pdf ke jariye hi pr meri life itni achi krne ke liye 💝");
-if(current==5) typeText("text5","Aapke jesa milna mai khudki kismat smjhu ya ek ittefaq 🫠 aapse pyaar hona sabse best decision rha 😭 thank you so much ♥️");
-if(current==6) typeText("text6","I love you mera bachha 😚");
-if(current==7){ 
-typeText("text7","Happy Anniversary 👀🎀");
-confetti();emojiRain();floatingFlowers();sparkles();
-}
-emojiRain();floatingFlowers();sparkles();
-}
-// Typing
-function typeText(id,text){let el=document.getElementById(id);el.innerHTML="";let i=0;let interval=setInterval(()=>{el.innerHTML+=text.charAt(i);i++;if(i>=text.length) clearInterval(interval);},60);}
-// Emoji rain
-function emojiRain(){for(let i=0;i<15;i++){let emoji=document.createElement("div");emoji.className="emoji";emoji.innerHTML="💖";emoji.style.left=Math.random()*window.innerWidth+"px";emoji.style.animationDuration=(3+Math.random()*3)+"s";document.body.appendChild(emoji);setTimeout(()=>emoji.remove(),6000);}}
-// Click hearts
-document.body.addEventListener("click",e=>{let heart=document.createElement("div");heart.innerHTML="💞";heart.style.position="absolute";heart.style.left=e.pageX+"px";heart.style.top=e.pageY+"px";heart.style.fontSize="20px";document.body.appendChild(heart);setTimeout(()=>heart.remove(),1000);});
-// Confetti
-function confetti(){for(let i=0;i<100;i++){let conf=document.createElement("div");conf.className="confetti";conf.style.left=Math.random()*window.innerWidth+"px";conf.style.background="hsl("+Math.random()*360+",100%,50%)";document.body.appendChild(conf);setTimeout(()=>conf.remove(),3000);}}
-// Floating flowers
-function floatingFlowers(){for(let i=0;i<15;i++){let flower=document.createElement("div");flower.className="flower";flower.innerHTML="🌸";flower.style.left=Math.random()*window.innerWidth+"px";flower.style.animationDuration=(4+Math.random()*3)+"s";document.body.appendChild(flower);setTimeout(()=>flower.remove(),6000);}}
-// Sparkles
-function sparkles(){for(let i=0;i<20;i++){let sp=document.createElement("div");sp.className="sparkle";sp.style.left=Math.random()*window.innerWidth+"px";sp.style.animationDuration=(3+Math.random()*3)+"s";document.body.appendChild(sp);setTimeout(()=>sp.remove(),6000);}}
-</script>
+    <script>
+        const pages = document.querySelectorAll('.page');
+        let currentPage = 0;
+
+        function nextPage() {
+            pages[currentPage].classList.remove('active');
+            currentPage++;
+            if(currentPage >= pages.length) currentPage = pages.length - 1;
+            pages[currentPage].classList.add('active');
+        }
+    </script>
 </body>
 </html>
